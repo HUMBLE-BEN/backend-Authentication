@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
-
+const cookie_parser = require("cookie-parser")
 const connectDB = require("./src/config/db");
 const ENV = require("./src/config/env");
 const authRouter = require("./src/routes/auth.router");
@@ -10,6 +10,7 @@ const app = express();
 
 // middlewares
 app.use(cors());
+app.use(cookie_parser())
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

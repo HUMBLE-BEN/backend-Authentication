@@ -1,5 +1,6 @@
 const joi = require("joi");
 
+
 const authSchema = {
     register: joi.object({
         email: joi.string().trim().lowercase().required().email(),
@@ -18,7 +19,22 @@ const authSchema = {
     }),
     resendOtp: joi.object({
         email: joi.string().trim().lowercase().required().email(),
-    })
+    }),
+
+    resetPassword: joi.object({
+        email: joi.string().trim().lowercase().required().email(),
+        otp: joi.string().required().min(6).max(6),
+        newPassword: joi.string().required().min(8).max(32),
+    }),
+
+
+    // forgotPassword:
+    //     joi.object({
+    //         email: joi.string().trim().lowercase().required().email(),
+    //         otp: joi.string().required().min(6).max(6),
+    //         newPassword: joi.string().required().min(8).max(32),
+    //     }),
+
 };
 
 const validateBody = (schemaName) => {
